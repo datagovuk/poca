@@ -18,3 +18,9 @@ def home():
     ctx = {}
     return render_template('index.html', **ctx)
 
+def search():
+  terms = request.args.get('q', '')
+  ctx = {
+    'terms': terms
+  }
+  return render_template('search.html', **ctx)
