@@ -16,13 +16,19 @@ Data.gov.uk
 <h1 class="heading-xlarge">
     Data.gov.uk
 </h1>
-{% include "search_form.html" %}
+{% include "snippets/search_form.html" %}
 
 <div class="grid-row">
-    <div class="column-one-thirds">
+    <div class="column-one-third">
+        <h2 class='bold-medium'>Filter results</h2>
     </div>
 
     <div class="column-two-thirds">
+        <h2 class='bold-medium'>Search results for '{{terms}}'</h2>
+
+        {% for result in results %}
+            {% include "snippets/search_result_item.html" %}
+        {% endfor %}
     </div>
 
 </div>

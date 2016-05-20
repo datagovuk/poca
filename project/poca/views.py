@@ -20,7 +20,19 @@ def home():
 
 def search():
   terms = request.args.get('q', '')
+  results = [
+    {'title': 'My shiny dataset',
+      'description': 'This dataset is an aggregation of the data found in some other datasets ',
+      'publisher': {'title': 'Cabinet Office'}
+    },
+    {'title': 'Another shiny dataset',
+     'description': 'There is very little data in this dataset, in fact it is a PDF file!',
+      'publisher': {'title': 'Cabinet Office'}
+    },
+  ]
+
   ctx = {
-    'terms': terms
+    'terms': terms,
+    'results': results,
   }
   return render_template('search.html', **ctx)
