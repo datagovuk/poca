@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+
+{% block pageheading %}
+Data.gov.uk
+{% endblock %}
+
+{% block optional_head %}
+      <link href="{{ url_for('static', filename='vendor/chosen/chosen.min.css')}}" media="all" rel="stylesheet" type="text/css" />
+      <script src="{{ url_for('static', filename='vendor/chosen/chosen.jquery.min.js')}}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="heading-xlarge" style='margin-bottom:0;'>
+    {{dataset.title}}
+
+    <span style='float:right; color: #dedede;'>
+          {{ publisher.title }}
+    </span>
+</h1>
+
+<hr/>
+Prelude
+<hr/>
+
+<div id="tabs-container">
+    <ul class="tabs-menu">
+        <li class="active-tab">
+            <i class="fa fa-list">
+              <span class="visuallyhidden">Data</span>
+            </i>
+
+          <a href="#listview">
+            Data
+          </a>
+        </li>
+        <li>
+              <i class="fa fa-map-marker">
+                  <span class="visuallyhidden">Map</span>
+               </i>
+
+            <a href="#mapview">
+              Map</a>
+        </li>
+    </ul>
+    <div class="clearfix"></div>
+
+    <div class="tab grid-row">
+        <div id="listview" class="tab-content" style="display:block; ">
+        Data
+        </div>
+
+        <div id="mapview" class="tab-content" style="display:block; display:none;">
+        Map
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var map_loaded = false;
+    (function($) {
+        $(".tabs-menu a").click(function(event) {
+            event.preventDefault();
+            $(this).parent().addClass("active-tab");
+            $(this).parent().siblings().removeClass("active-tab");
+            var tab = $(this).attr("href");
+            $(".tab-content").not(tab).css("display", "none");
+            $(tab).show();
+            // We don't want to keep focus because 'yellow box'.
+            $(this).blur();
+            if (event.target.hash == "#mapview" && !map_loaded) {
+              setup_map();
+            }
+        });
+    })(jQuery);
+    </script>
+{% endblock %}
