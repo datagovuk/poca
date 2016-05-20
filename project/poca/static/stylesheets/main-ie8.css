@@ -530,7 +530,7 @@ p {
 }
 
 .link {
-  color: #005ea5;
+  color: #8BC658;
   text-decoration: underline;
 }
 
@@ -543,7 +543,7 @@ p {
 }
 
 .link:active {
-  color: #005ea5;
+  color: #8BC658;
 }
 
 .link-back {
@@ -1161,7 +1161,7 @@ details {
 
 details summary {
   display: inline-block;
-  color: #005ea5;
+  color: #8BC658;
   cursor: pointer;
   position: relative;
   margin-bottom: 0.2631578947em;
