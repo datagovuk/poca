@@ -5,8 +5,10 @@
 ```
 vagrant up
 vagrant ssh 
-virtualenv poca --no-site-packages
-# On each vagrant ssh, need to run . poca/bin/activate
+sudo apt-get update
+sudo apt-get install python-virtualenv postgis postgresql-server-dev-9.3 python3-cxx-dev
+virtualenv -p /usr/bin/python3 ~/poca
+. ~/poca/bin/activate
 cd /vagrant
 pip install -r requirements/dev.txt
 ...
