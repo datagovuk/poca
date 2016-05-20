@@ -6,7 +6,7 @@
 vagrant up
 vagrant ssh 
 sudo apt-get update
-sudo apt-get install python-virtualenv postgis postgresql-server-dev-9.3 python3-cxx-dev
+sudo apt-get install python-virtualenv postgis postgresql-server-dev-9.3 python3-cxx-dev git
 virtualenv -p /usr/bin/python3 ~/poca
 . ~/poca/bin/activate
 cd /vagrant
