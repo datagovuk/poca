@@ -53,7 +53,7 @@ Prelude
                     Facets
                 </div>
 
-                <div class="column-two-quarter">
+                <div class="column-three-quarter" style="min-height: 500px;">
                     Data
                 </div>
             </div>
@@ -65,8 +65,13 @@ Prelude
                     Facets
                 </div>
 
-                <div class="column-two-quarter">
-                    Map
+                <div class="column-three-quarter">
+                     <div id="map" class="map" style="width: 100%; height: 600px;">
+                      <div id="popup" class="ol-popup">
+                        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                        <div id="popup-content"></div>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +81,9 @@ Prelude
 
 
 <script>
+    var map;
     var map_loaded = false;
+
     (function($) {
         $(".tabs-menu a").click(function(event) {
             event.preventDefault();
@@ -91,6 +98,25 @@ Prelude
               setup_map();
             }
         });
+
+    function setup_map(){
+        map = new ol.Map({
+            target: 'map',
+            layers: [
+              new ol.layer.Tile({
+                  source: new ol.source.OSM()
+              })
+            ],
+            view: new ol.View({
+                center: new ol.proj.transform([-3.5360, 54.5781], 'EPSG:4326', 'EPSG:3857'),
+                zoom: 5.8
+            })
+        });
+        map_loaded = true;
+    }
+
     })(jQuery);
+
+
     </script>
 {% endblock %}
