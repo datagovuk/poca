@@ -22,6 +22,24 @@ sudo -u postgres createdb poca_dev -E utf8 -O poca
 sudo -u postgres psql poca_dev -c 'CREATE EXTENSION postgis;'
 
 
+## Migrations
+
+Define your model in poca/models/ and make sure to import the class into 
+/poca/models/__init__.py
+
+```` 
+python project/manage.py db migrate -m 'A message' 
+````
+
+To run migrations (if they have changed or another dev has added a model)
+
+```
+python project/manage.py db upgrade
+```
+
+The command to downgrade is, erm, downgrade
+
+
 # Running the server
 
 ```
