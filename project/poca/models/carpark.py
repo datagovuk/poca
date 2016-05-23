@@ -8,7 +8,7 @@ from geoalchemy2.shape import to_shape
 class Carpark(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    auto_id = db.Column(db.Integer)
+    auto_id = db.Column(db.Integer())
     name = db.Column(db.Unicode())
     operator = db.Column(db.Unicode())
     scheme_status = db.Column(db.Unicode())

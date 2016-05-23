@@ -40,6 +40,17 @@ python project/manage.py db upgrade
 
 The command to downgrade is, erm, downgrade
 
+# Loading data
+
+Use the manage.py command, for example
+
+```bash
+# Get list of known commands
+python project/manage.py
+
+# Import carpark data
+python project/manage.py carparks -i data/carparks.csv
+```
 
 # Running the server
 

@@ -1,1 +1,5 @@
-commands = []
+from .carparks import CarparkImport
+
+commands = [
+    CarparkImport
+]
