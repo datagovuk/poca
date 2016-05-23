@@ -17,10 +17,11 @@ pip install -r requirements/dev.txt
 
 ## Creating the database 
 
+```
 sudo -u postgres createuser poca 
 sudo -u postgres createdb poca_dev -E utf8 -O poca
 sudo -u postgres psql poca_dev -c 'CREATE EXTENSION postgis;'
-
+```
 
 ## Migrations
 
