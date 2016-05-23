@@ -35,6 +35,9 @@ class Carpark(db.Model):
     latitude  = db.Column(db.Unicode())
     point = db.Column(Geography('POINT', spatial_index=False))
 
+    def get_columns(self):
+        return [k for k in sorted(self.__dict__) if '_sa_' != k[:4] and not k == 'point']
+
     def to_dict(self):
         return {k:self.__dict__[k] for k in sorted(self.__dict__) if '_sa_' != k[:4] and not k == 'point'}
 

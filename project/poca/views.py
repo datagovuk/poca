@@ -39,10 +39,15 @@ def search():
 
 def dataset(name):
     ''' Lookup processor and details by name '''
+    from poca.database import db
     from poca.processors import get_processor_by_name
     p = get_processor_by_name(name)
     ctx = p.get_context()
     ctx['_has_geo'] = p.has_geo()
+
+    f = db.session.query(p.get_model()).first()
+    ctx['_columns'] = f.get_columns()
+
     return render_template('dataset.html', **ctx)
 
 def dataset_data(name):
@@ -51,19 +56,22 @@ def dataset_data(name):
     p = get_processor_by_name(name)
     m = p.get_model()
 
-    page = 1
-    try:
-        page = int(request.args.get('page', 1))
-    except:
-        page = 1
+    from pprint import pprint
+    pprint(request.args)
 
-    per_page = 50
-    offset = (per_page * page) - per_page
+    draw = int(request.args.get('draw', 1))
+    offset = int(request.args.get('start', 0))
+    limit = int(request.args.get('length', 10))
 
-    data = db.session.query(m).offset(offset).limit(per_page)
+    data = db.session.query(m).offset(offset).limit(limit)
+    count = db.session.query(m).count()
+
     results = {
-        'total': db.session.query(m).count(),
+        'draw': draw,
+        'recordsFiltered': count,
+        'recordsTotal': count,
         'data': [d.to_dict() for d in data]
     }
+
     return jsonify(results)
 
