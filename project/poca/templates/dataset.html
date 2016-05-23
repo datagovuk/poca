@@ -124,6 +124,21 @@ Prelude
         });
 
     function setup_map(){
+
+var popup = $('#popup')[0];
+      var popup_content = $('#popup-content');
+      $('#popup-closer').click(function () {
+        overlay.setPosition(undefined);
+        return false;
+      });
+      var overlay = new ol.Overlay({
+        element: popup,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250
+        }
+      });
+
         map = new ol.Map({
             target: 'map',
             layers: [
@@ -134,8 +149,23 @@ Prelude
             view: new ol.View({
                 center: new ol.proj.fromLonLat([-3.5360, 54.5781]),
                 zoom: 5.8
-            })
+            }),
+            overlays: [overlay]
         });
+
+         map.on('singleclick', function(evt) {
+                var feature = map.forEachFeatureAtPixel(evt.pixel,
+                  function(feature, layer) {
+                    return feature;
+                  });
+                if(feature) {
+                  content = feature.get('content');
+                  popup_content.html('<p>' + content + '</p>');
+                  var coordinate = feature.getGeometry().getCoordinates();
+                  overlay.setPosition(coordinate);
+                }
+              });
+
         map_loaded = true;
 
         setTimeout(load_map_data, 100);
@@ -153,6 +183,7 @@ Prelude
                  var iconFeature = new ol.Feature({
                           geometry: p,
                            name: value.name,
+                           content: "<strong>" + value.name + "</strong>"
                         });
                  vectorSource.addFeature(iconFeature);
             });
