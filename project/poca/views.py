@@ -57,11 +57,11 @@ def dataset_data(name):
     m = p.get_model()
 
     from pprint import pprint
-    pprint(request.args)
+    pprint(request.form)
 
-    draw = int(request.args.get('draw', 1))
-    offset = int(request.args.get('start', 0))
-    limit = int(request.args.get('length', 10))
+    draw = int(request.form.get('draw', 1))
+    offset = int(request.form.get('start', 0))
+    limit = int(request.form.get('length', 10))
 
     data = db.session.query(m).offset(offset).limit(limit)
     count = db.session.query(m).count()

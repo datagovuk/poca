@@ -52,11 +52,12 @@ Prelude
     <div class="tab grid-row">
         <div id="listview" class="tab-content" style="display:block; ">
             <div class="grid-row">
+                <!--
                 <div class="column-one-quarter">
                     Facets
                 </div>
-
-                <div class="column-three-quarter" style="min-height: 500px;">
+                -->
+                <div class="xcolumn-three-quarter" style="min-height: 500px;">
                     <table id="datatable" class="display" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -142,6 +143,7 @@ Prelude
 $('#datatable').DataTable( {
     serverSide: true,
     processing: true,
+    scrollX: true,
     columns: [
         {% for col in _columns %}
             { "data": "{{col}}" }
@@ -150,6 +152,7 @@ $('#datatable').DataTable( {
     ],
     ajax: {
         url: '/dataset/carparks/data',
+        type: "POST"
     }
 } );
 
