@@ -1,3 +1,4 @@
+from poca.database import db
 from poca.models import Carpark
 from .base import Processor
 
@@ -8,6 +9,15 @@ class CarparkProcessor(Processor):
 
     def has_geo(self):
         return True
+
+    def get_geo(self):
+        results = []
+        res = db.session.query(Carpark.latitude, Carpark.longitude, Carpark.name).all()
+        for lat, lng, name in res:
+            results.append({
+                    'lat': lat, 'lng': lng, 'name': name
+                })
+        return results
 
     def search(self, query, term):
         t = term + "%"
@@ -22,7 +32,8 @@ class CarparkProcessor(Processor):
         ''' Return the context for a single result '''
         return {
             'dataset': {
-                'title': 'Car Parks'
+                'title': 'Car Parks',
+                'name': 'carparks'
             },
             'publisher': {'title': 'Multiple Publishers'}
         }

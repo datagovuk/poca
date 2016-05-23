@@ -17,3 +17,6 @@ class Processor(object):
 
     def search(self, query, term):
         return query
+
+    def get_geo(self):
+        return []

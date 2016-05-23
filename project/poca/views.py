@@ -50,14 +50,20 @@ def dataset(name):
 
     return render_template('dataset.html', **ctx)
 
+def dataset_geo(name):
+    from poca.processors import get_processor_by_name
+    p = get_processor_by_name(name)
+    geo = p.get_geo()
+    res = {
+      'points': geo
+    }
+    return jsonify(res)
+
 def dataset_data(name):
     ''' Lookup processor and details by name '''
     from poca.processors import get_processor_by_name
     p = get_processor_by_name(name)
     m = p.get_model()
-
-    from pprint import pprint
-    pprint(request.form)
 
     draw = int(request.form.get('draw', 1))
     offset = int(request.form.get('start', 0))

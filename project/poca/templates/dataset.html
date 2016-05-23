@@ -137,6 +137,42 @@ Prelude
             })
         });
         map_loaded = true;
+
+        setTimeout(load_map_data, 100);
+    }
+
+    function load_map_data() {
+         $.ajax({
+                url: "{{dataset.name}}/geo",
+                dataType: "json"
+         }).done(function(data) {
+            var vectorSource = new ol.source.Vector({});
+
+            $.each(data.points, function(idx, value){
+                var p = new ol.geom.Point(ol.proj.transform([parseFloat(value.lng), parseFloat(value.lat)], 'EPSG:4326', 'EPSG:3857') )
+                 var iconFeature = new ol.Feature({
+                          geometry: p,
+                           name: value.name,
+                        });
+                 vectorSource.addFeature(iconFeature);
+            });
+
+            var iconStyle = new ol.style.Style({
+              image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+                anchor: [0.5, 46],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: 0.75,
+                src: '/static/images/icons/icon-locator.png'
+              }))
+            });
+
+            var vectorLayer = new ol.layer.Vector({
+                source: vectorSource,
+                style: iconStyle
+              });
+             map.addLayer(vectorLayer);
+        })
     }
 
 
@@ -151,7 +187,7 @@ $('#datatable').DataTable( {
         {% endfor %}
     ],
     ajax: {
-        url: '/dataset/carparks/data',
+        url: '/dataset/{{dataset.name}}/data',
         type: "POST"
     }
 } );
