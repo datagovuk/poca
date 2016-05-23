@@ -123,3 +123,13 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
   box-sizing: border-box;
 }
 
+
+.dataset {
+    padding-left: 8px;
+    padding-top: 8px;
+    padding-right: 8px;
+}
+.super {
+    background-color: #F8ED62;
+    padding-bottom: 8px;
+ }

@@ -35,5 +35,8 @@ class Carpark(db.Model):
     latitude  = db.Column(db.Unicode())
     point = db.Column(Geography('POINT', spatial_index=False))
 
+    def to_dict(self):
+        return {k:self.__dict__[k] for k in sorted(self.__dict__) if '_sa_' != k[:4] and not k == 'point'}
+
     #Monday Open,Monday Close,Monday 24,Monday Closed,Tuesday Open,Tuesday Close,Tuesday 24,Tuesday Closed,Wednesday Open,Wednesday Close,Wednesday 24,Wednesday Closed,Thursday Open,Thursday Close,Thursday 24,Thursday Closed,Friday Open,Friday Close,Friday 24,Friday Closed,Saturday Open,Saturday Close,Saturday 24,Saturday Closed,Sunday Open,Sunday Close,Sunday 24,Sunday Closed,Keywords,
 

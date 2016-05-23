@@ -1,5 +1,5 @@
 
-<div style="margin-top: 20px;">
+<div style="margin-top: 20px;" class="dataset {% if result.super %}super{% endif%}">
 
    <h2 class="bold-small">
      <a href="/dataset/{{result.name}}">{{ result.title }}</a>
@@ -13,5 +13,7 @@
     {{ result.description }}
    </p>
 
-<hr/>
+{% if not result.super %}
+    <hr/>
+{% endif %}
 </div>
