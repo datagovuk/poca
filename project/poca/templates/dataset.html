@@ -132,7 +132,7 @@ Prelude
               })
             ],
             view: new ol.View({
-                center: new ol.proj.transform([-3.5360, 54.5781], 'EPSG:4326', 'EPSG:3857'),
+                center: new ol.proj.fromLonLat([-3.5360, 54.5781]),
                 zoom: 5.8
             })
         });
@@ -149,7 +149,7 @@ Prelude
             var vectorSource = new ol.source.Vector({});
 
             $.each(data.points, function(idx, value){
-                var p = new ol.geom.Point(ol.proj.transform([parseFloat(value.lng), parseFloat(value.lat)], 'EPSG:4326', 'EPSG:3857') )
+                var p = new ol.geom.Point(ol.proj.fromLonLat([parseFloat(value.lng), parseFloat(value.lat)]) )
                  var iconFeature = new ol.Feature({
                           geometry: p,
                            name: value.name,
@@ -159,9 +159,9 @@ Prelude
 
             var iconStyle = new ol.style.Style({
               image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                anchor: [0.5, 46],
+                anchor: [0.5, 1.0],
                 anchorXUnits: 'fraction',
-                anchorYUnits: 'pixels',
+                anchorYUnits: 'fraction',
                 opacity: 0.75,
                 src: '/static/images/icons/icon-locator.png'
               }))
