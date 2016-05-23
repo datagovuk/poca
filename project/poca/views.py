@@ -63,13 +63,18 @@ def dataset_data(name):
     offset = int(request.form.get('start', 0))
     limit = int(request.form.get('length', 10))
 
-    data = db.session.query(m).offset(offset).limit(limit)
-    count = db.session.query(m).count()
+    query = db.session.query(m)
+    search = request.form.get('search[value]', '')
+    if search:
+        query = p.search(query, search)
+
+    data = query.offset(offset).limit(limit)
+    total = db.session.query(m).count()
 
     results = {
         'draw': draw,
-        'recordsFiltered': count,
-        'recordsTotal': count,
+        'recordsFiltered': query.count(),
+        'recordsTotal': total,
         'data': [d.to_dict() for d in data]
     }
 

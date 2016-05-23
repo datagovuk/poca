@@ -15,3 +15,5 @@ class Processor(object):
     def get_context(self):
         pass
 
+    def search(self, query, term):
+        return query

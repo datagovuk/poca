@@ -1,14 +1,22 @@
-
+from poca.models import Carpark
 from .base import Processor
 
 class CarparkProcessor(Processor):
 
     def get_model(self):
-        from poca.models import Carpark
         return Carpark
 
     def has_geo(self):
         return True
+
+    def search(self, query, term):
+        t = term + "%"
+        return query.filter(
+            Carpark.county.ilike(t) |
+            Carpark.operator.ilike(t) |
+            Carpark.name.ilike(t) |
+            Carpark.town.ilike(t)
+        )
 
     def get_context(self):
         ''' Return the context for a single result '''
