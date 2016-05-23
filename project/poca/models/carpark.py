@@ -36,7 +36,14 @@ class Carpark(db.Model):
     point = db.Column(Geography('POINT', spatial_index=False))
 
     def get_columns(self):
-        return [k for k in sorted(self.__dict__) if '_sa_' != k[:4] and not k == 'point']
+        return [
+            'name',
+            'operator',
+            'street_1',
+            'town',
+            'county',
+            'number_of_spaces'
+        ]
 
     def to_dict(self):
         return {k:self.__dict__[k] for k in sorted(self.__dict__) if '_sa_' != k[:4] and not k == 'point'}
