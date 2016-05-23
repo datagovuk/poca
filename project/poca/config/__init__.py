@@ -8,7 +8,7 @@ class Config(object):
     DEBUG = False
     TESTING = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('POCA_SQLALCHEMY_URL',
-            'postgresql://poca_dev:pass@localhost/poca_dev')
+            'postgresql://poca:pass@localhost/poca_dev')
 
 class ProductionConfig(Config):
     pass

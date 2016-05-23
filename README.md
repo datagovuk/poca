@@ -6,7 +6,7 @@
 vagrant up
 vagrant ssh 
 sudo apt-get update
-sudo apt-get install python-virtualenv postgis postgresql-server-dev-9.3 python3-cxx-dev git
+sudo apt-get install python-virtualenv postgresql-server-dev-9.3 postgresql python3-cxx-dev git postgresql-client  postgresql-9.3-postgis-2.1
 virtualenv -p /usr/bin/python3 ~/poca
 . ~/poca/bin/activate
 cd /vagrant
@@ -14,6 +14,12 @@ pip install -r requirements/dev.txt
 ...
 
 ```
+
+## Creating the database 
+
+sudo -u postgres createuser poca 
+sudo -u postgres createdb poca_dev -E utf8 -O poca
+sudo -u postgres psql poca_dev -c 'CREATE EXTENSION postgis;'
 
 
 # Running the server
