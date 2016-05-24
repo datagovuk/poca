@@ -61,6 +61,7 @@ def dataset_geo(name):
 
 def dataset_data(name):
     ''' Lookup processor and details by name '''
+    from poca.lib.data_filters import get_sort
     from poca.processors import get_processor_by_name
     p = get_processor_by_name(name)
     m = p.get_model()
@@ -74,7 +75,12 @@ def dataset_data(name):
     if search:
         query = p.search(query, search)
 
-    data = query.offset(offset).limit(limit)
+    sort = get_sort(request.form)
+    if sort:
+        print(sort)
+        data = query.order_by(sort).offset(offset).limit(limit)
+    else:
+        data = query.offset(offset).limit(limit)
     total = db.session.query(m).count()
 
     results = {
