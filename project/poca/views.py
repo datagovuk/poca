@@ -9,11 +9,14 @@ from flask import (render_template,
                    jsonify)
 
 import json
+import re
 import logging
 
 from poca.database import db
 
 logger = logging.getLogger(__name__)
+
+PLACE_MATCH = re.compile('.* in (.*)')
 
 def home():
     ctx = {}
@@ -22,8 +25,15 @@ def home():
 def search():
     from poca.processors import get_processors
 
-    terms = request.args.get('q', '')
-    lowered = [t.lower() for t in terms.split(' ')]
+    terms = request.args.get('q', '').strip()
+    lowered = [t.lower() for t in terms.strip().split(' ')]
+
+    m = PLACE_MATCH.match(terms)
+    if m:
+        location = m.groups(0)[0]
+        location = location[0].upper() + location[1:].lower()
+    else:
+        location = ''
 
     for proc in get_processors():
         p = proc()
@@ -32,6 +42,7 @@ def search():
             ctx = {
               'terms': terms,
               'results': results,
+              'location': location
             }
             break
 
