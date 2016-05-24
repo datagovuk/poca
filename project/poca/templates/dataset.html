@@ -46,6 +46,20 @@ Prelude
               Map</a>
         </li>
         {% endif %}
+        <li>
+              <i class="fa fa-map-marker">
+                  <span class="visuallyhidden">Download</span>
+               </i>
+
+            <a href="#download">Download</a>
+        </li>
+        <li>
+              <i class="fa fa-map-marker">
+                  <span class="visuallyhidden">Metadata</span>
+               </i>
+
+            <a href="#metadata">Metadata</a>
+        </li>
     </ul>
     <div class="clearfix"></div>
 
@@ -97,6 +111,31 @@ Prelude
             </div>
         </div>
         {% endif %}
+
+        <div id="download" class="tab-content" style="display:block; ">
+            <div class="grid-row">
+                <h1 class="heading-small">Download the entire dataset</h1>
+
+                <a href="">CSV</a>
+                {% if _has_geo %}
+                  <a href="">GeoJSON</a>
+                {% endif %}
+
+                <h1 class="heading-small">Download current view</h1>
+
+                <a href="">CSV</a>
+                {% if _has_geo %}
+                  <a href="">GeoJSON</a>
+                {% endif %}
+
+            </div>
+          </div>
+    </div>
+
+        <div id="metadata" class="tab-content" style="display:block; ">
+            <div class="grid-row">
+            </div>
+          </div>
     </div>
 </div>
 
