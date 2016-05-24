@@ -45,6 +45,8 @@ def dataset(name):
     ctx = p.get_context()
     ctx['_has_geo'] = p.has_geo()
 
+    ctx['q'] = request.args.get('q', '')
+
     f = db.session.query(p.get_model()).first()
     ctx['_columns'] = f.get_columns()
 

@@ -210,6 +210,11 @@ var popup = $('#popup')[0];
 $('#datatable').DataTable( {
     serverSide: true,
     processing: true,
+    {% if q %}
+    search: {
+        search: "{{q}}"
+    },
+    {% endif %}
     scrollX: true,
     columns: [
         {% for col in _columns %}
