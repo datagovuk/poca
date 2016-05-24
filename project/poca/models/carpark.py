@@ -42,7 +42,9 @@ class Carpark(db.Model):
             'street_1',
             'town',
             'county',
-            'number_of_spaces'
+            'number_of_spaces',
+            'latitude',
+            'longitude'
         ]
 
     def to_dict(self):

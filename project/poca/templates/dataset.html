@@ -144,6 +144,9 @@ Prelude
 <script>
     var map;
     var map_loaded = false;
+    var datatable = null;
+    var iconStyle = null;
+    var vectorLayer = null;
 
     (function($) {
         $(".tabs-menu a").click(function(event) {
@@ -156,8 +159,9 @@ Prelude
             // We don't want to keep focus because 'yellow box'.
             $(this).blur();
             {% if _has_geo %}
-            if (event.target.hash == "#mapview" && !map_loaded) {
-              setup_map();
+            if (event.target.hash == "#mapview" ) {
+              if ( !map_loaded) { setup_map(); }
+              setTimeout(load_map_data, 100);
             }
             {% endif %}
         });
@@ -205,48 +209,59 @@ var popup = $('#popup')[0];
                 }
               });
 
+        iconStyle = new ol.style.Style({
+          image: new ol.style.Icon( ({
+            anchor: [0.5, 1.0],
+            anchorXUnits: 'fraction',
+            anchorYUnits: 'fraction',
+            opacity: 0.75,
+            src: '/static/images/icons/icon-locator.png'
+          }))
+        });
+
+
         map_loaded = true;
-
-        setTimeout(load_map_data, 100);
     }
 
+    /* Load the map data from the data table current view... */
     function load_map_data() {
-         $.ajax({
-                url: "{{dataset.name}}/geo",
-                dataType: "json"
-         }).done(function(data) {
-            var vectorSource = new ol.source.Vector({});
 
-            $.each(data.points, function(idx, value){
-                var p = new ol.geom.Point(ol.proj.fromLonLat([parseFloat(value.lng), parseFloat(value.lat)]) )
-                 var iconFeature = new ol.Feature({
-                          geometry: p,
-                           name: value.name,
-                           content: "<strong>" + value.name + "</strong>"
-                        });
-                 vectorSource.addFeature(iconFeature);
-            });
+        // Remove any existing layers
+        layers = map.getLayers();
+        for (var i =0; i < layers.length; i++ ) {
+          map.removeLayer(layers[i])
+        }
 
-            var iconStyle = new ol.style.Style({
-              image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                anchor: [0.5, 1.0],
-                anchorXUnits: 'fraction',
-                anchorYUnits: 'fraction',
-                opacity: 0.75,
-                src: '/static/images/icons/icon-locator.png'
-              }))
-            });
+        // get data from datatable
+        var names = datatable.column(0).data()
+        var lat = datatable.column(6).data()
+        var lon = datatable.column(7).data()
 
-            var vectorLayer = new ol.layer.Vector({
-                source: vectorSource,
-                style: iconStyle
-              });
-             map.addLayer(vectorLayer);
-        })
+        var vectorSource = new ol.source.Vector({});
+
+        for (var i = 0; i < names.length; i++) {
+          var p = new ol.geom.Point(ol.proj.fromLonLat([parseFloat(lon[i]), parseFloat(lat[i])]) )
+           var iconFeature = new ol.Feature({
+                    geometry: p,
+                     name: names[i],
+                     content: "<strong>" + names[i] + "</strong>"
+                  });
+           vectorSource.addFeature(iconFeature);
+        }
+
+        vectorLayer = new ol.layer.Vector({
+            source: vectorSource,
+            style: iconStyle
+          });
+         map.addLayer(vectorLayer);
+
+      var extent = vectorSource.getExtent();
+      map.getView().fit(extent, map.getSize());
+
     }
 
 
-$('#datatable').DataTable( {
+datatable = $('#datatable').DataTable( {
     serverSide: true,
     processing: true,
     {% if q %}

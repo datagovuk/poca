@@ -22,9 +22,6 @@ class CarparkProcessor(Processor):
     def search(self, query, term):
         t = term + "%"
         return query.filter(
-            Carpark.county.ilike(t) |
-            Carpark.operator.ilike(t) |
-            Carpark.name.ilike(t) |
             Carpark.town.ilike(t)
         )
 
