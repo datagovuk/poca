@@ -266,6 +266,7 @@ var popup = $('#popup')[0];
 datatable = $('#datatable').DataTable( {
     serverSide: true,
     processing: true,
+    iDisplayLength: 100,
     {% if q %}
     search: {
         search: "{{q}}"
