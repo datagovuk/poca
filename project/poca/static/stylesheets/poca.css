@@ -133,3 +133,8 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
     background-color: #F8ED62;
     padding-bottom: 8px;
  }
+
+ #popup-content {
+    font-size: 0.8em;
+    width: 300px;
+ }

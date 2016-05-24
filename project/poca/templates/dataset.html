@@ -237,6 +237,8 @@ var popup = $('#popup')[0];
         var names = datatable.column(0).data()
         var lat = datatable.column(6).data()
         var lon = datatable.column(7).data()
+        var street = datatable.column(2).data()
+        var spaces = datatable.column(5).data()
 
         if (vectorSource) { vectorSource.clear() }
         else { vectorSource = new ol.source.Vector({}); }
@@ -246,7 +248,7 @@ var popup = $('#popup')[0];
            var iconFeature = new ol.Feature({
                     geometry: p,
                      name: names[i],
-                     content: "<strong>" + names[i] + "</strong>"
+                     content: "<strong>" + names[i] + "</strong><br/>" + street[i] + "<br/>" + spaces[i] + " spaces"
                   });
            vectorSource.addFeature(iconFeature);
         }
