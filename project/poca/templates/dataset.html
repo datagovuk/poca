@@ -147,6 +147,7 @@ Prelude
     var datatable = null;
     var iconStyle = null;
     var vectorLayer = null;
+    var vectorSource= null;
 
     (function($) {
         $(".tabs-menu a").click(function(event) {
@@ -237,7 +238,8 @@ var popup = $('#popup')[0];
         var lat = datatable.column(6).data()
         var lon = datatable.column(7).data()
 
-        var vectorSource = new ol.source.Vector({});
+        if (vectorSource) { vectorSource.clear() }
+        else { vectorSource = new ol.source.Vector({}); }
 
         for (var i = 0; i < names.length; i++) {
           var p = new ol.geom.Point(ol.proj.fromLonLat([parseFloat(lon[i]), parseFloat(lat[i])]) )
