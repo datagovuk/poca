@@ -3,6 +3,12 @@
 
 class Processor(object):
 
+    def noun(self):
+        return 'Thing'
+
+    def noun_plural(self):
+        return 'Things'
+
     def is_match(self, terms):
         return True
 

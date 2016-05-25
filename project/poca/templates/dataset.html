@@ -96,11 +96,12 @@ Prelude
         {% if _has_geo %}
         <div id="mapview" class="tab-content" style="display:block; display:none;">
             <div class="grid-row">
+                <!--
                 <div class="column-one-quarter">
                     Facets
                 </div>
-
-                <div class="column-three-quarter">
+                -->
+                <div class="xcolumn-three-quarter">
                      <div id="map" class="map" style="width: 100%; height: 600px;">
                       <div id="popup" class="ol-popup">
                         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
@@ -187,7 +188,11 @@ var popup = $('#popup')[0];
             target: 'map',
             layers: [
               new ol.layer.Tile({
-                  source: new ol.source.OSM()
+                  //source: new ol.source.OSM()
+                  source: new ol.source.XYZ({
+        tileSize: [512, 512],
+        url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v8/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoicm9zc2pvbmVzIiwiYSI6ImNpb21wNGM5aTAwMWF3OGx4cm0xd3Y3bXQifQ.l2m2bofKrBscVXKtPe5CLA'
+      })
               })
             ],
             view: new ol.View({

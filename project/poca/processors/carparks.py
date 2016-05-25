@@ -4,6 +4,12 @@ from .base import Processor
 
 class CarparkProcessor(Processor):
 
+    def noun(self):
+        return 'Car Park'
+
+    def noun_plural(self):
+        return 'Car Parks'
+
     def get_model(self):
         return Carpark
 
