@@ -44,5 +44,11 @@ class DatasetImport(Command):
             d.publisher_id = publisher_id
             d.is_super = is_super
 
+            d.issue_date  = row.get('issue_date', '')
+            d.update_date  = row.get('update_date', '')
+            d.theme = row.get('theme', '')
+            d.temporal_coverage = row.get('temporal_coverage', '')
+            d.schema = row.get('schema', '')
+
             db.session.add(d)
             db.session.commit()
