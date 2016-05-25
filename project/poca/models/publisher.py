@@ -29,3 +29,6 @@ class Publisher(db.Model):
     name = db.Column(db.Unicode(), nullable=False, index=True)
     title = db.Column(db.Unicode())
     category = db.Column(db.Unicode())
+
+    datasets = db.relationship('Dataset', backref='publisher',
+                                lazy='dynamic')

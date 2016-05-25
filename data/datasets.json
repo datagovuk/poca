@@ -1,0 +1,17 @@
+[
+    {
+        "name": "carparks",
+        "title": "Car Parks",
+        "description": "An aggregation of car park data from multiple sources",
+        "publisher_id": 1411,
+        "is_super": true
+    },
+    {
+        "name": "carparks",
+        "title": "Car Parks in Swansea",
+        "description": "Data about Car Parks in City and County of Swansea",
+        "publisher_id": 1408,
+        "is_super": false
+    }
+]
+
