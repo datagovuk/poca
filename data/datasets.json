@@ -4,6 +4,12 @@
         "title": "Car Parks",
         "description": "An aggregation of car park data from multiple sources",
         "publisher_id": 1411,
+        "issue_date": "01/01/2016",
+        "update_date": "01/01/2016",
+        "next_update_date": "01/07/2016",
+        "theme": "Infrastructure",
+        "temporal_coverage": "2016",
+        "schema": "",
         "is_super": true
     },
     {
@@ -11,6 +17,12 @@
         "title": "Car Parks",
         "description": "Data about Car Parks in City and County of Swansea",
         "publisher_id": 1408,
+        "issue_date": "01/01/2016",
+        "update_date": "01/01/2016",
+        "next_update_date": "01/07/2016",
+        "theme": "Infrastructure",
+        "temporal_coverage": "2016",
+        "schema": "",
         "is_super": false
     }
 ]

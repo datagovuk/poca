@@ -16,6 +16,7 @@ class Dataset(db.Model):
 
     issue_date  = db.Column(db.Unicode())
     update_date = db.Column(db.Unicode())
+    next_update_date = db.Column(db.Unicode())
     theme = db.Column(db.Unicode())
 
     temporal_coverage = db.Column(db.Unicode())
