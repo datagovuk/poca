@@ -135,6 +135,30 @@ Data.gov.uk
 
         <div id="metadata" class="tab-content" style="display:block; display:none;">
             <div class="grid-row">
+                <div class="column-one-third">
+                    <h2 class="heading-medium"  style="margin-bottom:4px;">Metadata</h2>
+                    <dl>
+                        <dt>Created date</dt>
+                        <dd>{{dataset.issue_date}}</dd>
+                        <dt>Last update date</dt>
+                        <dd>{{dataset.update_date}}</dd>
+                        <dt>Next update date</dt>
+                        <dd>{{ dataset.next_update_date }}</dd>
+                        <dt>Theme</dt>
+                        <dd>{{dataset.theme}}</dd>
+                        <dt>Temporal Coverage</dt>
+                        <dd>{{dataset.temporal_coverage}}</dd>
+                    </dl>
+                  </div>
+
+                  <div class="column-two-thirds">
+                      <h2 class="heading-medium" style="margin-bottom:4px;">Schema</h2>
+                      <div>
+                      <iframe width="100%" height="500px" src="{{ url_for('static', filename='schema/carparks.json')}}"
+                         style="border: solid 3px #eee;" frameborder="0">
+                      </iframe>
+                      </div>
+                  </div>
             </div>
           </div>
     </div>

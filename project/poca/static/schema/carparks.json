@@ -1,0 +1,39 @@
+{
+    "fields": [
+        {
+            "name": "auto_id",
+            "title": "Auto ID",
+            "description": "The unique ID for the car park",
+            "constraints": {
+                "required": "true",
+                "type": "number",
+            }
+        },
+        {
+            "name": "name",
+            "title": "Name",
+            "description": "The name of the Car Park",
+            "constraints": {
+                "required": "true",
+                "type": "string",
+            }
+        },
+        {
+            "name": "operator",
+            "title": "Operator",
+            "description": "The name of the organisation that operates the car park",
+            "constraints": {
+                "required": "true",
+                "type": "string",
+            }
+        },
+        {
+            "name": "spaces",
+            "title": "Number of spaces",
+            "description": "The maximum number of spaces available at this car park. This is the total of all other types of spaces",
+            "constraints": {
+                "required": "true",
+                "type": "number",
+            }
+        }
+]
