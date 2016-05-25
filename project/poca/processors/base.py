@@ -18,8 +18,6 @@ class Processor(object):
     def has_geo(self):
         return False
 
-    def get_context(self):
-        pass
 
     def search(self, query, term):
         return query

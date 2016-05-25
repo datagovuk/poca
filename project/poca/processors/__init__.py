@@ -3,15 +3,7 @@ from .base import Processor
 from .carparks import CarparkProcessor
 
 class DefaultProcessor(Processor):
-
-    def get_context(self):
-        return  {
-            'dataset': {
-                'title': 'A shiny new dataset'
-            },
-            'publisher': {'title': 'Cabinet Office'}
-        }
-
+    pass
 
 
 def get_processors():

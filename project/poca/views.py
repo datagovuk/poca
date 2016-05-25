@@ -48,18 +48,32 @@ def search():
 
     return render_template('search.html', **ctx)
 
-def dataset(name):
+def dataset(publisher_name, name):
     ''' Lookup processor and details by name '''
     from poca.database import db
+    from poca.models import Publisher, Dataset
     from poca.processors import get_processor_by_name
+
+    publisher = db.session.query(Publisher)\
+        .filter(Publisher.name == publisher_name).first()
+    if not publisher:
+        abort(404)
+
+    dataset = db.session.query(Dataset)\
+        .filter(Dataset.name==name)\
+        .filter(Dataset.publisher_id==publisher.id).first()
+    if not dataset:
+        abort(404)
+
     p = get_processor_by_name(name)
-    ctx = p.get_context()
-    ctx['_has_geo'] = p.has_geo()
-
-    ctx['q'] = request.args.get('q', '')
-
     f = db.session.query(p.get_model()).first()
-    ctx['_columns'] = f.get_columns()
+
+    ctx = {
+        'dataset': dataset,
+        '_has_geo': p.has_geo(),
+        'q': request.args.get('q', ''),
+        '_columns': f.get_columns(),
+    }
 
     return render_template('dataset.html', **ctx)
 

@@ -14,7 +14,7 @@ class Carpark(db.Model):
     scheme_status = db.Column(db.Unicode())
     part_time_award = db.Column(db.Unicode())
     phone = db.Column(db.Unicode())
-    street_1 = db.Column(db.Unicode())
+    street = db.Column(db.Unicode())
     street_2 = db.Column(db.Unicode())
     street_3 = db.Column(db.Unicode())
     town = db.Column(db.Unicode())
@@ -22,7 +22,7 @@ class Carpark(db.Model):
     postcode  = db.Column(db.Unicode())
     physical_type  = db.Column(db.Unicode())
     payment_type  = db.Column(db.Unicode())
-    number_of_spaces  = db.Column(db.Integer())
+    spaces  = db.Column(db.Integer())
     disabled_spaces  = db.Column(db.Integer())
     cycles  = db.Column(db.Unicode())
     motobike  = db.Column(db.Unicode())
@@ -39,10 +39,10 @@ class Carpark(db.Model):
         return [
             'name',
             'operator',
-            'street_1',
+            'street',
             'town',
             'county',
-            'number_of_spaces',
+            'spaces',
             'latitude',
             'longitude'
         ]

@@ -1,8 +1,8 @@
 
-<div style="margin-top: 20px;" class="dataset {% if result.super %}super{% endif%}">
+<div style="margin-top: 20px;" class="dataset {% if result.is_super %}super{% endif%}">
 
    <h2 class="bold-small">
-     <a href="/dataset/{{result.name}}{% if location%}?q={{location}}{% endif %}">{{ result.title }}</a>
+     <a href="/{{result.publisher.name}}/{{result.name}}{% if location and result.is_super %}?q={{location}}{% endif %}">{{ result.title }}</a>
 
      <span style='float:right;'  class="form-hint">
           {{ result.publisher.title }}
@@ -13,7 +13,7 @@
     {{ result.description }}
    </p>
 
-{% if not result.super %}
+{% if not result.is_super %}
     <hr/>
 {% endif %}
 </div>
