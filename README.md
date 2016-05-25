@@ -50,6 +50,9 @@ python project/manage.py
 
 # Import carpark data
 python project/manage.py carparks -i data/carparks.csv
+
+# Import publishers
+python project/manage.py publishers -i data/publishers.csv
 ```
 
 # Running the server
