@@ -316,16 +316,19 @@ var popup = $('#popup')[0];
               type: "POST"
           }
       } );
+
       datatable.on( 'draw.dt', function () {
         var details = datatable.page.info();
-        console.log(details)
+
         $('#count').html(details.recordsDisplay)
         $('#total').html(details.recordsTotal)
+
         if ( details.recordsDisplay == details.recordsTotal) {
           $('#qonly').hide()
         } else {
           $('#qonly').show()
         }
+
         $('#stats').show()
       } );
 
