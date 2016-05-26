@@ -22,6 +22,8 @@ Data.gov.uk
 </h1>
 
 <hr/>
+  <p id='stats' style='display:none'>This dataset contains <span id='count' style='font-size: 1.2em; font-weight: 600; color: #999;'>?</span> records {% if q%}<span id='qonly'>filtered from a total of <span id="total"  style='font-size: 1.2em; font-weight: 600; color: #999;'>?</span></span>{% endif %}</p>
+
   <p>{{dataset.description}}</p>
 <hr/>
 
@@ -293,28 +295,39 @@ var popup = $('#popup')[0];
 
     }
 
-
-datatable = $('#datatable').DataTable( {
-    serverSide: true,
-    processing: true,
-    iDisplayLength: 100,
-    {% if q %}
-    search: {
-        search: "{{q}}"
-    },
-    {% endif %}
-    scrollX: true,
-    columns: [
-        {% for col in _columns %}
-            { "data": "{{col}}" }
-            {% if not loop.last %}, {% endif%}
-        {% endfor %}
-    ],
-    ajax: {
-        url: '/dataset/{{dataset.name}}/data',
-        type: "POST"
-    }
-} );
+      datatable = $('#datatable').DataTable( {
+          serverSide: true,
+          processing: true,
+          iDisplayLength: 100,
+          {% if q %}
+          search: {
+              search: "{{q}}"
+          },
+          {% endif %}
+          scrollX: true,
+          columns: [
+              {% for col in _columns %}
+                  { "data": "{{col}}" }
+                  {% if not loop.last %}, {% endif%}
+              {% endfor %}
+          ],
+          ajax: {
+              url: '/dataset/{{dataset.name}}/data',
+              type: "POST"
+          }
+      } );
+      datatable.on( 'draw.dt', function () {
+        var details = datatable.page.info();
+        console.log(details)
+        $('#count').html(details.recordsDisplay)
+        $('#total').html(details.recordsTotal)
+        if ( details.recordsDisplay == details.recordsTotal) {
+          $('#qonly').hide()
+        } else {
+          $('#qonly').show()
+        }
+        $('#stats').show()
+      } );
 
     })(jQuery);
 
