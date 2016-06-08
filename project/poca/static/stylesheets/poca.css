@@ -130,8 +130,9 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
     padding-right: 8px;
 }
 .super {
-    background-color: #F8ED62;
+    background-color: #F4FFE7;
     padding-bottom: 8px;
+    border: solid 6px #8BC658;
  }
 
  #popup-content {
@@ -140,3 +141,8 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
  }
 
  dt { font-weight: bold }
+
+ .emph {
+    font-weight: 600;
+    font-style: bold;
+ }

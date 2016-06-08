@@ -35,9 +35,15 @@ class SpendProcessor(Processor):
         from poca.database import db
         from poca.models import Dataset
 
+        results = []
         datasets = db.session.query(Dataset)\
             .filter(Dataset.name=='spend')\
-            .order_by(Dataset.is_super.desc())
-
-        return datasets.all()
+            .order_by(Dataset.is_super.desc()).all()
+        for dataset in datasets:
+            if dataset.is_super:
+                dataset.summary = "This dataset contains <span class='emph'>28,383 records</span> from <span class='emph'>2 publishers</span>"
+            else:
+                dataset.summary = ""
+            results.append(dataset)
+        return results
 

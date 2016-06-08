@@ -43,9 +43,16 @@ class CarparkProcessor(Processor):
         from poca.database import db
         from poca.models import Dataset
 
+        results = []
         datasets = db.session.query(Dataset)\
             .filter(Dataset.name=='carparks')\
-            .order_by(Dataset.is_super.desc())
+            .order_by(Dataset.is_super.desc()).all()
 
-        return datasets.all()
+        for dataset in datasets:
+            if dataset.is_super:
+                dataset.summary = "This dataset contains <span class='emph'>4,636 records</span> from <span class='emph'>1 publisher</span>"
+            else:
+                dataset.summary = ""
+            results.append(dataset)
+        return results
 

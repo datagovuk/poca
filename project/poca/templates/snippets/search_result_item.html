@@ -13,6 +13,12 @@
     {{ result.description }}
    </p>
 
+   {% if result.summary %}
+    <p>
+        {{result.summary|safe }}
+    </p>
+   {% endif %}
+
 {% if not result.is_super %}
     <hr/>
 {% endif %}
