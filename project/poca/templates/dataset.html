@@ -156,9 +156,11 @@ Data.gov.uk
                   <div class="column-two-thirds">
                       <h2 class="heading-medium" style="margin-bottom:4px;">Schema</h2>
                       <div>
-                      <iframe width="100%" height="500px" src="{{ url_for('static', filename='schema/carparks.json')}}"
+                      {% with schemaname = 'schema/{}.json'.format(dataset.name) %}
+                      <iframe width="100%" height="500px" src="{{ url_for('static', filename=schemaname)}}"
                          style="border: solid 3px #eee;" frameborder="0">
                       </iframe>
+                      {% endwith %}
                       </div>
                   </div>
             </div>

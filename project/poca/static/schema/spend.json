@@ -1,0 +1,181 @@
+{
+  "fields": [
+    {
+      "name": "OrganisationLabel",
+      "title": "Organisation name",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "OrganisationURI",
+      "title": "Organisation code",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#URI"
+      }
+    },
+    {
+      "name": "OrganisationalUnit",
+      "title": "Directorate / service where expenditure occurred",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "ServiceCategoryLabel",
+      "title": "Service category label",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "ServiceCategoryURI",
+      "title": "Service category URI",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#URI"
+      }
+    },
+    {
+      "name": "BeneficiaryName",
+      "title": "Supplier (beneficiary) name",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "BeneficiaryOtherID",
+      "title": "Local supplier (beneficiary) internal reference",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CompaniesHouseRegistrationNumber",
+      "title": "Supplier registered company number",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CharityCommissionNumber",
+      "title": "Supplier registered charity number",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "VCSEGrant",
+      "title": "VCSE grant",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#boolean"
+      }
+    },
+    {
+      "name": "PaymentDate",
+      "title": "Date",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#dateTime"
+      }
+    },
+    {
+      "name": "TransactionNumber",
+      "title": "Transaction number",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "Amount",
+      "title": "Net Amount",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#float"
+      }
+    },
+    {
+      "name": "IrrecoverableVATAmount",
+      "title": "Irrecoverable VAT",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#float"
+      }
+    },
+    {
+      "name": "Purpose",
+      "title": "Purpose of spend (summary)",
+      "constraints": {
+        "required": true,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CategoryInternalName",
+      "title": "Procurement classification: Council's procurement category name",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CPVLabel",
+      "title": "Procurement classification: CPV label",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CPVCode",
+      "title": "Procurement classification: CPV code",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "ProclassLabel",
+      "title": "Procurement classification: Proclass label",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "ProclassCode",
+      "title": "Procurement classification: Proclass code",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    },
+    {
+      "name": "CardTransaction",
+      "title": "Card Transaction",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string",
+        "pattern": "(GPC|CCC|None)"
+      }
+    },
+    {
+      "name": "ContractRef",
+      "title": "Contract reference",
+      "constraints": {
+        "required": false,
+        "type": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    }
+  ]
+}
