@@ -104,7 +104,6 @@ def dataset_data(name):
 
     sort = get_sort(request.form)
     if sort:
-        print(sort)
         data = query.order_by(sort).offset(offset).limit(limit)
     else:
         data = query.offset(offset).limit(limit)

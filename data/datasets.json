@@ -24,6 +24,19 @@
         "temporal_coverage": "2016",
         "schema": "",
         "is_super": false
+    },
+    {
+        "name": "spend",
+        "title": "Spend Data",
+        "description": "Spend Data from all of the Local Authorities that have published their data using the LGA Spend Schema",
+        "publisher_id": 1411,
+        "issue_date": "01/01/2016",
+        "update_date": "01/01/2016",
+        "next_update_date": "01/07/2016",
+        "theme": "Spending",
+        "temporal_coverage": "2016",
+        "schema": "",
+        "is_super":true
     }
 ]
 

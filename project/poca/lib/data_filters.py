@@ -16,4 +16,4 @@ def get_sort(input_dict):
     if not order:
         return None
 
-    return "{} {}".format(fieldname, order)
+    return '"{}" {}'.format(fieldname, order)
