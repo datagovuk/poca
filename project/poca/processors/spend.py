@@ -41,7 +41,7 @@ class SpendProcessor(Processor):
             .order_by(Dataset.is_super.desc()).all()
         for dataset in datasets:
             if dataset.is_super:
-                dataset.summary = "This dataset contains <span class='emph'>28,383 records</span> from <span class='emph'>2 publishers</span>"
+                dataset.summary = "This dataset contains <span class='emph'>242,985 records</span> from <span class='emph'>15 publishers</span>"
             else:
                 dataset.summary = ""
             results.append(dataset)
